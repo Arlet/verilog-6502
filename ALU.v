@@ -17,7 +17,7 @@
  *
  */
 
-module ALU( clk, op, right, AI, BI, CI, CO, BCD, OUT, V, Z, N, HC );
+module ALU( clk, op, right, AI, BI, CI, CO, BCD, OUT, V, Z, N, HC, RDY );
 	input clk;
 	input right;
 	input [3:0] op;		// operation
@@ -31,6 +31,7 @@ module ALU( clk, op, right, AI, BI, CI, CO, BCD, OUT, V, Z, N, HC );
 	output Z;
 	output N;
 	output HC;
+	input RDY;
 
 reg [7:0] OUT;
 reg CO;
@@ -89,13 +90,14 @@ always @* begin
 end
 
 // calculate the flags 
-always @(posedge clk) begin
+always @(posedge clk)
+    if( RDY ) begin
 	OUT <= temp[7:0];
 	CO  <= temp[8] | CO9;
 	Z   <= ~|temp[7:0];
 	N   <= temp[7];
 	V   <= AI[7] ^ BI[7] ^ temp[7] ^ temp[8]; 
 	HC  <= temp_HC;
-end
+    end
 
 endmodule
