@@ -230,56 +230,56 @@ reg [8*6-1:0] statename;
 
 always @*
     case( state )
-	    DECODE: statename <= "DECODE";
-	    REG:    statename <= "REG";
-	    ZP0:    statename <= "ZP0";
-	    ZPX0:   statename <= "ZPX0";
-	    ZPX1:   statename <= "ZPX1";
-	    ABS0:   statename <= "ABS0";
-	    ABS1:   statename <= "ABS1";
-	    ABSX0:  statename <= "ABSX0";
-	    ABSX1:  statename <= "ABSX1";
-	    ABSX2:  statename <= "ABSX2";
-	    INDX0:  statename <= "INDX0";
-	    INDX1:  statename <= "INDX1";
-	    INDX2:  statename <= "INDX2";
-	    INDX3:  statename <= "INDX3";
-	    INDY0:  statename <= "INDY0";
-	    INDY1:  statename <= "INDY1";
-	    INDY2:  statename <= "INDY2";
-	    INDY3:  statename <= "INDY3";
-	     READ:  statename <= "READ";
-	    WRITE:  statename <= "WRITE";
-	    FETCH:  statename <= "FETCH";
-	    PUSH0:  statename <= "PUSH0";
-	    PUSH1:  statename <= "PUSH1";
-	    PULL0:  statename <= "PULL0";
-	    PULL1:  statename <= "PULL1";
-	    PULL2:  statename <= "PULL2";
-	    JSR0:   statename <= "JSR0";
-	    JSR1:   statename <= "JSR1";
-	    JSR2:   statename <= "JSR2";
-	    JSR3:   statename <= "JSR3";
-	    RTI0:   statename <= "RTI0";
-	    RTI1:   statename <= "RTI1";
-	    RTI2:   statename <= "RTI2";
-	    RTI3:   statename <= "RTI3";
-	    RTI4:   statename <= "RTI4";
-	    RTS0:   statename <= "RTS0";
-	    RTS1:   statename <= "RTS1";
-	    RTS2:   statename <= "RTS2";
-	    RTS3:   statename <= "RTS3";
-	    BRK0:   statename <= "BRK0";
-	    BRK1:   statename <= "BRK1";
-	    BRK2:   statename <= "BRK2";
-	    BRK3:   statename <= "BRK3";
-	    BRA0:   statename <= "BRA0";
-	    BRA1:   statename <= "BRA1";
-	    BRA2:   statename <= "BRA2";
-	    JMP0:   statename <= "JMP0";
-	    JMP1:   statename <= "JMP1";
-	    JMPI0:  statename <= "JMPI0";
-	    JMPI1:  statename <= "JMPI1";
+	    DECODE: statename = "DECODE";
+	    REG:    statename = "REG";
+	    ZP0:    statename = "ZP0";
+	    ZPX0:   statename = "ZPX0";
+	    ZPX1:   statename = "ZPX1";
+	    ABS0:   statename = "ABS0";
+	    ABS1:   statename = "ABS1";
+	    ABSX0:  statename = "ABSX0";
+	    ABSX1:  statename = "ABSX1";
+	    ABSX2:  statename = "ABSX2";
+	    INDX0:  statename = "INDX0";
+	    INDX1:  statename = "INDX1";
+	    INDX2:  statename = "INDX2";
+	    INDX3:  statename = "INDX3";
+	    INDY0:  statename = "INDY0";
+	    INDY1:  statename = "INDY1";
+	    INDY2:  statename = "INDY2";
+	    INDY3:  statename = "INDY3";
+	     READ:  statename = "READ";
+	    WRITE:  statename = "WRITE";
+	    FETCH:  statename = "FETCH";
+	    PUSH0:  statename = "PUSH0";
+	    PUSH1:  statename = "PUSH1";
+	    PULL0:  statename = "PULL0";
+	    PULL1:  statename = "PULL1";
+	    PULL2:  statename = "PULL2";
+	    JSR0:   statename = "JSR0";
+	    JSR1:   statename = "JSR1";
+	    JSR2:   statename = "JSR2";
+	    JSR3:   statename = "JSR3";
+	    RTI0:   statename = "RTI0";
+	    RTI1:   statename = "RTI1";
+	    RTI2:   statename = "RTI2";
+	    RTI3:   statename = "RTI3";
+	    RTI4:   statename = "RTI4";
+	    RTS0:   statename = "RTS0";
+	    RTS1:   statename = "RTS1";
+	    RTS2:   statename = "RTS2";
+	    RTS3:   statename = "RTS3";
+	    BRK0:   statename = "BRK0";
+	    BRK1:   statename = "BRK1";
+	    BRK2:   statename = "BRK2";
+	    BRK3:   statename = "BRK3";
+	    BRA0:   statename = "BRA0";
+	    BRA1:   statename = "BRA1";
+	    BRA2:   statename = "BRA2";
+	    JMP0:   statename = "JMP0";
+	    JMP1:   statename = "JMP1";
+	    JMPI0:  statename = "JMPI0";
+	    JMPI1:  statename = "JMPI1";
     endcase
 
 //always @( PC )
@@ -366,19 +366,19 @@ always @*
 	JMP1,
 	JMPI1,
 	RTI4,
-	ABS1:		AB <= { DIMUX, ADD };
+	ABS1:		AB = { DIMUX, ADD };
 
 	BRA2,
 	INDY3,
-	ABSX2:		AB <= { ADD, ABL };
+	ABSX2:		AB = { ADD, ABL };
 
-	BRA1:		AB <= { ABH, ADD };
+	BRA1:		AB = { ABH, ADD };
 
 	JSR0,
 	PUSH1,
 	RTS0,
 	RTI0,
-	BRK0:		AB <= { STACKPAGE, regfile };
+	BRK0:		AB = { STACKPAGE, regfile };
 
 	BRK1,
 	JSR1,
@@ -388,21 +388,21 @@ always @*
 	RTI1,
 	RTI2,
 	RTI3,
-	BRK2:		AB <= { STACKPAGE, ADD };
+	BRK2:		AB = { STACKPAGE, ADD };
 	
 	INDY1,
 	INDX1,
 	ZPX1,
-	INDX2:		AB <= { ZEROPAGE, ADD };
+	INDX2:		AB = { ZEROPAGE, ADD };
 
 	ZP0,
-	INDY0:		AB <= { ZEROPAGE, DIMUX };
+	INDY0:		AB = { ZEROPAGE, DIMUX };
 
 	REG,
 	READ,
-	WRITE:		AB <= { ABH, ABL };
+	WRITE:		AB = { ABH, ABL };
 
-	default:	AB <= PC;
+	default:	AB = PC;
     endcase
 
 /*
@@ -420,19 +420,19 @@ end
  */
 always @*
     case( state )
-	WRITE:	 DO <= ADD;
+	WRITE:	 DO = ADD;
 
 	JSR0,
-	BRK0:	 DO <= PCH;
+	BRK0:	 DO = PCH;
 
 	JSR1,
-	BRK1:	 DO <= PCL;
+	BRK1:	 DO = PCL;
 
-	PUSH1:	 DO <= php ? P : ADD;
+	PUSH1:	 DO = php ? P : ADD;
 
-	BRK2:	 DO <= (IRQ | NMI_edge) ? P : P | 8'b0001_0000;
+	BRK2:	 DO = (IRQ | NMI_edge) ? P : P | 8'b0001_0000;
 
-	default: DO <= regfile;
+	default: DO = regfile;
     endcase
 
 /*
@@ -447,16 +447,16 @@ always @*
 	JSR0,
 	JSR1,
 	PUSH1,
-	WRITE: 	 WE <= 1;
+	WRITE: 	 WE = 1;
 
 	INDX3,	// only if doing a STA, STX or STY
 	INDY3,
 	ABSX2,
 	ABS1,
 	ZPX1,
-        ZP0:	 WE <= store;
+        ZP0:	 WE = store;
 
-	default: WE <= 0;
+	default: WE = 0;
     endcase
 
 /*
@@ -469,16 +469,16 @@ reg write_register;		// set when register file is written
 
 always @*
     case( state )
-	DECODE: write_register <= load_reg & ~plp;
+	DECODE: write_register = load_reg & ~plp;
 
 	PULL1, 
 	 RTS2, 
 	 RTI3,
 	 BRK3,
 	 JSR0,
-	 JSR2 : write_register <= 1;
+	 JSR2 : write_register = 1;
 
-       default: write_register <= 0;
+       default: write_register = 0;
     endcase
 
 /*
@@ -539,10 +539,10 @@ always @*
 	INDY1,
 	INDX0,
 	ZPX0,
-    	ABSX0  : regsel <= index_y ? SEL_Y : SEL_X;
+    	ABSX0  : regsel = index_y ? SEL_Y : SEL_X;
 
 
-	DECODE : regsel <= dst_reg; 
+	DECODE : regsel = dst_reg; 
 
 	BRK0,
 	BRK3,
@@ -554,9 +554,9 @@ always @*
 	RTI0,
 	RTI3,
 	RTS0,
-	RTS2   : regsel <= SEL_S;
+	RTS2   : regsel = SEL_S;
 	
-        default: regsel <= src_reg; 
+        default: regsel = src_reg; 
     endcase
 
 /*
@@ -584,24 +584,24 @@ ALU ALU( .clk(clk),
 
 always @*
     case( state )
-	READ:	alu_op <= op;
+	READ:	alu_op = op;
 
-	BRA1:  	alu_op <= backwards ? OP_SUB : OP_ADD; 
+	BRA1:  	alu_op = backwards ? OP_SUB : OP_ADD; 
 
 	FETCH,
-	REG : 	alu_op <= op; 
+	REG : 	alu_op = op; 
 
 	DECODE,
-	ABS1: 	alu_op <= 1'bx;
+	ABS1: 	alu_op = 1'bx;
 
 	PUSH1,
 	BRK0,
 	BRK1,
 	BRK2,
 	JSR0,
-	JSR1:	alu_op <= OP_SUB;
+	JSR1:	alu_op = OP_SUB;
 
-     default:   alu_op <= OP_ADD;
+     default:   alu_op = OP_ADD;
     endcase
 
 /*
@@ -610,9 +610,9 @@ always @*
 
 always @*
     if( state == FETCH || state == REG || state == READ )
-	alu_shift_right <= shift_right;
+	alu_shift_right = shift_right;
     else
-	alu_shift_right <= 0;
+	alu_shift_right = 0;
 
 /*
  * Sign extend branch offset.  
@@ -620,7 +620,7 @@ always @*
 
 always @(posedge clk)
     if( RDY )
-	backwards <= DIMUX[7];
+	backwards = DIMUX[7];
 
 /* 
  * ALU A Input MUX 
@@ -634,7 +634,7 @@ always @*
 	RTI2,
 	BRK1,
 	BRK2,
-	INDX1: 	AI <= ADD;
+	INDX1: 	AI = ADD;
 
 	REG,
 	ZPX0,
@@ -648,19 +648,19 @@ always @*
 	PULL0,
 	INDY1,
 	PUSH0,
-	PUSH1:	AI <= regfile;
+	PUSH1:	AI = regfile;
 
 	BRA0,
-	READ:	AI <= DIMUX;
+	READ:	AI = DIMUX;
 
-	BRA1: 	AI <= ABH;	// don't use PCH in case we're 
+	BRA1: 	AI = ABH;	// don't use PCH in case we're 
 
-	FETCH:	AI <= load_only ? 0 : regfile;
+	FETCH:	AI = load_only ? 0 : regfile;
 
 	DECODE,
-	ABS1:	AI <= 8'hxx;	// don't care
+	ABS1:	AI = 8'hxx;	// don't care
 
-	default: 	AI <= 0;
+	default:  AI = 0;
     endcase
 
 
@@ -687,14 +687,14 @@ always @*
 	 PUSH0,	
 	 PUSH1,
 	 PULL0,
-	 RTS0:	BI <= 8'h00;
+	 RTS0:	BI = 8'h00;
 	
-	 BRA0:	BI <= PCL;
+	 BRA0:	BI = PCL;
 
 	 DECODE,
-	 ABS1:  BI <= 8'hxx;
+	 ABS1:  BI = 8'hxx;
 
-	 default:	BI <= DIMUX;
+	 default:	BI = DIMUX;
     endcase
 
 /*
@@ -705,16 +705,16 @@ always @*
     case( state )
 	INDY2,
 	BRA1,
-	ABSX1:	CI <= CO;
+	ABSX1:	CI = CO;
 
 	DECODE,
- 	ABS1:	CI <= 1'bx;
+ 	ABS1:	CI = 1'bx;
 
 	READ,
-	REG:	CI <= rotate ? C :
+	REG:	CI = rotate ? C :
 		     shift ? 0 : inc;
 
-	FETCH:	CI <= rotate  ? C : 
+	FETCH:	CI = rotate  ? C : 
 		     compare ? 1 : 
 		     (shift | load_only) ? 0 : C;
 
@@ -725,9 +725,9 @@ always @*
 	RTS0,
 	RTS1,
 	INDY0,
-	INDX1:	CI <= 1; 
+	INDX1:	CI = 1; 
 
-	default:	CI <= 0;
+	default: 	CI = 0;
     endcase
 
 /*
@@ -1193,14 +1193,14 @@ always @(posedge clk)
 
 always @*
     case( cond_code )
-	    3'b000: cond_true <= ~N;
-	    3'b001: cond_true <= N;
-	    3'b010: cond_true <= ~V;
-	    3'b011: cond_true <= V;
-	    3'b100: cond_true <= ~C;
-	    3'b101: cond_true <= C;
-	    3'b110: cond_true <= ~Z;
-	    3'b111: cond_true <= Z;
+	    3'b000: cond_true = ~N;
+	    3'b001: cond_true = N;
+	    3'b010: cond_true = ~V;
+	    3'b011: cond_true = V;
+	    3'b100: cond_true = ~C;
+	    3'b101: cond_true = C;
+	    3'b110: cond_true = ~Z;
+	    3'b111: cond_true = Z;
     endcase
 
 
