@@ -975,8 +975,10 @@ always @(posedge clk)
      if( state == DECODE && RDY )
      	casex( IR )
 		8'b0xxx_xx01,	// ORA, AND, EOR, ADC
-	 	8'b1x1x_xx01,	// LDA, SBC
-		8'bxxxx_10x0,	// ASLA, ROLA, LSRA, RORA, Txx, DEX, NOP,
+     		8'b1x1x_xx01,	// LDA, SBC
+     		8'bxxxx_1010,	// ASLA, ROLA, LSRA, RORA, T[XS][SX], DEX, NOP,
+     		8'bxxx0_1000,	// PHP, PLP, PHA, PLA, DEY, TAY, INY, INX
+     		8'b1001_1000,	// TYA
 		8'b1011_x1x0,	// LDX/LDY
 		8'b1010_xxx0:	// LDA/LDX/LDY 
 				load_reg <= 1;
