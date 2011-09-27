@@ -795,11 +795,11 @@ always @(posedge clk)
 	I <= 1;
     else if( state == RTI2 )
     	I <= DIMUX[2];
-    else if( state == DECODE ) begin
+    else if( state == REG ) begin
 	if( sei ) I <= 1;
 	if( cli ) I <= 0;
+    else if( state == DECODE )
 	if( plp ) I <= ADD[2];
-    end
 
 /*
  * Update D flag
