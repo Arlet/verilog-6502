@@ -798,7 +798,7 @@ always @(posedge clk)
     else if( state == REG ) begin
 	if( sei ) I <= 1;
 	if( cli ) I <= 0;
-    else if( state == DECODE )
+    end else if( state == DECODE )
 	if( plp ) I <= ADD[2];
 
 /*
