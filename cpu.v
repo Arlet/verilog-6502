@@ -411,7 +411,7 @@ always @*
  * source of the address, such as the ALU or DI.
  */
 always @(posedge clk)
-    if( state != PUSH0 && state != PUSH1 &&
+    if( state != PUSH0 && state != PUSH1 && RDY && 
 	state != PULL0 && state != PULL1 && state != PULL2 )
     begin
 	ABL <= AB[7:0];
