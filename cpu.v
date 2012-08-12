@@ -93,7 +93,7 @@ wire [7:0]   Y = AXYS[SEL_Y];		// Y register
 wire [7:0]   S = AXYS[SEL_S];		// Stack pointer 
 `endif
 
-wire [7:0] P = { N, V, 2'b0, D, I, Z, C };
+wire [7:0] P = { N, V, 2'b11, D, I, Z, C };
 
 /*
  * instruction decoder/sequencer
@@ -282,8 +282,8 @@ always @*
 	    JMPI1:  statename = "JMPI1";
     endcase
 
-//always @( PC )
-	//$display( "%t, PC:%04x A:%02x X:%02x Y:%02x S:%02x C:%d Z:%d V:%d N:%d", $time, PC, A, X, Y, S, C, Z, V, N );
+always @( PC )
+	$display( "%t, PC:%04x IR:%02x A:%02x X:%02x Y:%02x S:%02x C:%d Z:%d V:%d N:%d P:%02x", $time, PC, IR, A, X, Y, S, C, Z, V, N, P );
 
 `endif
 
@@ -433,7 +433,7 @@ always @*
 
 	PUSH1:	 DO = php ? P : ADD;
 
-	BRK2:	 DO = (IRQ | NMI_edge) ? P : P | 8'b0001_0000;
+	BRK2:	 DO = (IRQ | NMI_edge) ? (P & 8'b1110_1111) : P;
 
 	default: DO = regfile;
     endcase
@@ -572,7 +572,7 @@ ALU ALU( .clk(clk),
 	 .AI(AI),
 	 .BI(BI),
 	 .CI(CI),
-	 .BCD(adc_bcd),
+	 .BCD(adc_bcd & (state == FETCH)),
 	 .CO(CO),
 	 .OUT(ADD),
 	 .V(AV),
@@ -977,13 +977,15 @@ always @(posedge clk)
 always @(posedge clk)
      if( state == DECODE && RDY )
      	casex( IR )
-		8'b0xxx_xx01,	// ORA, AND, EOR, ADC
-     		8'b1x1x_xx01,	// LDA, SBC
-     		8'bxxxx_1010,	// ASLA, ROLA, LSRA, RORA, T[XS][SX], DEX, NOP,
-     		8'bxxx0_1000,	// PHP, PLP, PHA, PLA, DEY, TAY, INY, INX
-     		8'b1001_1000,	// TYA
-		8'b1011_x1x0,	// LDX/LDY
-		8'b1010_xxx0:	// LDA/LDX/LDY 
+                8'b0xx01010,    // ASLA, ROLA, LSRA, RORA
+                8'b0xxxxx01,    // ORA, AND, EOR, ADC
+                8'b100x10x0,    // DEY, TYA, TXA, TXS
+                8'b1010xxx0:    // LDA/LDX/LDY 
+                8'b10111010,    // TSX
+                8'b1011x1x0,    // LDX/LDY
+                8'b11001010,    // DEX
+                8'b1x1xxx01,    // LDA, SBC
+                8'bxxx01000,    // DEY, TAY, INY, INX
 				load_reg <= 1;
 
 		default:	load_reg <= 0;

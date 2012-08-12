@@ -96,7 +96,7 @@ always @(posedge clk)
 	CO  <= temp[8] | CO9;
 	Z   <= ~|temp[7:0];
 	N   <= temp[7];
-	V   <= AI[7] ^ BI[7] ^ temp[7] ^ temp[8]; 
+	V   <= AI[7] ^ temp_BI[7] ^ temp[7] ^ temp[8]; 
 	HC  <= temp_HC;
     end
 
