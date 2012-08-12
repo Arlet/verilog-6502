@@ -282,8 +282,8 @@ always @*
 	    JMPI1:  statename = "JMPI1";
     endcase
 
-always @( PC )
-	$display( "%t, PC:%04x IR:%02x A:%02x X:%02x Y:%02x S:%02x C:%d Z:%d V:%d N:%d P:%02x", $time, PC, IR, A, X, Y, S, C, Z, V, N, P );
+//always @( PC )
+//	$display( "%t, PC:%04x IR:%02x A:%02x X:%02x Y:%02x S:%02x C:%d Z:%d V:%d N:%d P:%02x", $time, PC, IR, A, X, Y, S, C, Z, V, N, P );
 
 `endif
 
