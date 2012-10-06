@@ -980,12 +980,12 @@ always @(posedge clk)
                 8'b0xx01010,    // ASLA, ROLA, LSRA, RORA
                 8'b0xxxxx01,    // ORA, AND, EOR, ADC
                 8'b100x10x0,    // DEY, TYA, TXA, TXS
-                8'b1010xxx0:    // LDA/LDX/LDY 
+                8'b1010xxx0,    // LDA/LDX/LDY 
                 8'b10111010,    // TSX
                 8'b1011x1x0,    // LDX/LDY
                 8'b11001010,    // DEX
                 8'b1x1xxx01,    // LDA, SBC
-                8'bxxx01000,    // DEY, TAY, INY, INX
+                8'bxxx01000:    // DEY, TAY, INY, INX
 				load_reg <= 1;
 
 		default:	load_reg <= 0;
