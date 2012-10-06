@@ -35,11 +35,13 @@ module ALU( clk, op, right, AI, BI, CI, CO, BCD, OUT, V, Z, N, HC, RDY );
 
 reg [7:0] OUT;
 reg CO;
-reg V;
-reg Z;
+wire V;
+wire Z;
 reg N;
 reg HC;
 
+reg AI7;
+reg BI7;
 reg [8:0] logic;
 reg [7:0] temp_BI;
 reg [4:0] temp_l;
@@ -92,12 +94,15 @@ end
 // calculate the flags 
 always @(posedge clk)
     if( RDY ) begin
+	AI7 <= AI[7];
+	BI7 <= temp_BI[7];
 	OUT <= temp[7:0];
 	CO  <= temp[8] | CO9;
-	Z   <= ~|temp[7:0];
 	N   <= temp[7];
-	V   <= AI[7] ^ temp_BI[7] ^ temp[7] ^ temp[8]; 
 	HC  <= temp_HC;
     end
+
+assign V = AI7 ^ BI7 ^ CO ^ N;
+assign Z = ~|OUT;
 
 endmodule
