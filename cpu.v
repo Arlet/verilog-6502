@@ -674,7 +674,6 @@ always @*
 always @*
     case( state )
          BRA1,
-         JSR1,
          RTS1,
          RTI0,
          RTI1,
@@ -683,6 +682,7 @@ always @*
          READ,
          REG,
          JSR0,
+         JSR1,
          JSR2,
          BRK0,
          BRK1,
